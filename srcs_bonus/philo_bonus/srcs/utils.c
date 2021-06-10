@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:22:45 by sperrin           #+#    #+#             */
-/*   Updated: 2021/05/29 11:30:33 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/10 16:36:53 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo_three.h"
+#include "../includes/philo_bonus.h"
 
 bool	ft_isdigit(int c)
 {

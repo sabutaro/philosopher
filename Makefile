@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+         #
+#    By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/12 11:06:16 by sperrin           #+#    #+#              #
-#    Updated: 2021/06/09 10:27:34 by sperrin          ###   ########.fr        #
+#    Updated: 2021/06/10 21:08:11 by sperrin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ $(PHILO):
 				@cp -rf $(SRCS)/$(PHILO)/$(PHILO) $(DIR)/$(PHILO)
 
 bonus :
+				$(MAKE) -C $(SRCS)/$(PHILO)
+				@cp -rf $(SRCS)/$(PHILO)/$(PHILO) $(DIR)/$(PHILO)
 				$(MAKE) -C $(SRCS_BONUS)/$(PHILO_BONUS)
 				@cp -rf $(SRCS_BONUS)/$(PHILO_BONUS)/$(PHILO_BONUS) ./$(PHILO_BONUS)
 

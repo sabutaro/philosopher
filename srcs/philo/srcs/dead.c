@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dead.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:30:23 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/07 16:24:39 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/10 22:11:31 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo_one.h"
+#include "../includes/philo.h"
 
 void	*philo_dead(void *void_philo)
 {
@@ -19,6 +19,7 @@ void	*philo_dead(void *void_philo)
 	philo = void_philo;
 	while (1)
 	{
+		pthread_mutex_lock(&philo->table->m_eat);
 		if (philo->cnt_eat == philo->table->must_eat)
 			break ;
 		if (get_time() - philo->last_eat > philo->table->time_to_die)
@@ -33,8 +34,10 @@ void	*philo_dead(void *void_philo)
 			pthread_mutex_unlock(&philo->table->m_dead);
 			break ;
 		}
+		pthread_mutex_unlock(&philo->table->m_eat);
 		m_sleep(1);
 	}
+	pthread_mutex_unlock(&philo->table->m_eat);
 	return (NULL);
 }
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   eat_sleep_think.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:30:37 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/07 17:33:03 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/10 22:10:27 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo_one.h"
+#include "../includes/philo.h"
 
 static void	take_forks_and_eat(t_philo *philo, t_table *table)
 {
@@ -58,7 +58,7 @@ int	put_msg(t_philo *philo, char *str, unsigned long curr_time)
 		pthread_mutex_unlock(&(philo->table->m_output));
 		return (1);
 	}
-	printf("%lu MS %d %s\n", curr_time - philo->table->base_time,
+	printf("%lums %d %s\n", curr_time - philo->table->base_time,
 		philo->num, str);
 	pthread_mutex_unlock(&(philo->table->m_output));
 	return (0);

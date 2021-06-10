@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three.h                                      :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/19 12:07:48 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/07 16:26:55 by sperrin          ###   ########.fr       */
+/*   Created: 2021/06/04 09:20:49 by sperrin           #+#    #+#             */
+/*   Updated: 2021/06/10 22:18:48 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_THREE_H
-# define PHILO_THREE_H
+#ifndef PHILO_H
+# define PHILO_H
 
-# include <stdbool.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include <sys/time.h>
-# include <signal.h>
 # include <pthread.h>
-# include <semaphore.h>
 
 typedef struct s_table
 {
@@ -31,20 +29,21 @@ typedef struct s_table
 	int				must_eat;
 	unsigned long	base_time;
 	int				dead;
-	sem_t			*s_forks;
-	sem_t			*s_output;
-	sem_t			*s_eat;
-	sem_t			*s_dead;
-	sem_t			*s_last_eat;
+	pthread_mutex_t	*m_forks;
+	pthread_mutex_t	m_output;
+	pthread_mutex_t	m_eat;
+	pthread_mutex_t	m_dead;
 }					t_table;
 
 typedef struct s_philo
 {
 	t_table			*table;
+	int				fork1;
+	int				fork2;
 	int				num;
 	int				cnt_eat;
 	unsigned long	last_eat;
-	pid_t			pid;
+	pthread_t		tid;
 }					t_philo;
 
 int					put_msg(t_philo *philo, char *str,
@@ -57,5 +56,4 @@ void				m_sleep(unsigned long itime);
 int					error(char *argv);
 int					check_is_number(char **argv);
 int					ft_strcmp(char *s1, char *s2);
-void				process_monitor(t_philo *philos, int count);
 #endif

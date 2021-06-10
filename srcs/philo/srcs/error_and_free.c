@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_and_free.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:24:34 by sperrin           #+#    #+#             */
-/*   Updated: 2021/05/22 09:19:35 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/10 16:46:16 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo_one.h"
+#include "../includes/philo.h"
 
 int	error(char *argv)
 {

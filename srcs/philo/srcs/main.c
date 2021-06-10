@@ -6,11 +6,11 @@
 /*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:30:16 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/06 12:16:58 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/10 21:16:15 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo_one.h"
+#include "../includes/philo.h"
 
 int	init_philo_and_time(int argc, char **argv, t_table *table)
 {
