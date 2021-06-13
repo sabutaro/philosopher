@@ -6,7 +6,7 @@
 /*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:08:15 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/10 21:14:31 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/12 18:26:17 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	init_philo_and_time(int argc, char **argv, t_table *table)
 		table->must_eat = ft_atoi(argv[5]);
 	else
 		table->must_eat = -1;
-	if (table->number_of_philosopher <= 1 || table->number_of_philosopher > 200)
+	if (table->number_of_philosopher > 200)
 		return (0);
 	if (table->time_to_die < 60 || table->time_to_eat < 60
 		|| table->time_to_sleep < 60)
@@ -51,6 +51,8 @@ static void	init_philo(t_philo *philo, t_table *table, pid_t *philosopher)
 	int		i;
 
 	i = 0;
+	if (!table->number_of_philosopher)
+		return ;
 	while (i < table->number_of_philosopher)
 	{
 		philo[i].num = i + 1;
