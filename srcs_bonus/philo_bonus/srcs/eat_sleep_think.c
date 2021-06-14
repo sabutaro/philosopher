@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat_sleep_think.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:21:51 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/10 21:23:20 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:49:49 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,17 @@ int	put_msg(int id, char *msg, t_philo *philo)
 }
 
 int	eat_sleep(int id, t_philo *philo)
-{	
-	sem_wait(philo->table->s_permits);
+{
 	sem_wait(philo->table->s_forks);
 	put_msg(id, "has taken a fork", philo);
 	sem_wait(philo->table->s_forks);
 	put_msg(id, "has taken a fork", philo);
-	sem_post(philo->table->s_permits);
 	put_msg(id, "is eating", philo);
 	sem_wait(philo->table->s_eat);
 	philo->cnt_eat++;
 	philo->last_eat = get_time();
 	sem_post(philo->table->s_eat);
-	msleep(philo->table->time_to_eat);
+	usleep(philo->table->time_to_eat * 1000);
 	sem_post(philo->table->s_forks);
 	sem_post(philo->table->s_forks);
 	if (philo->table->must_eat != -1
@@ -78,7 +76,7 @@ void	*start_dinner(void *philo_ptr)
 			break ;
 		if (put_msg(philo->num, "is sleeping", philo) == 1)
 			exit (1);
-		msleep(philo->table->time_to_sleep);
+		usleep(philo->table->time_to_sleep * 1000);
 		if (put_msg(philo->num, "is thinking", philo) == 1)
 			exit(1);
 	}

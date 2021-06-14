@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:08:15 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/12 18:26:17 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:48:09 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,10 @@ static int	init_table(t_table *table)
 	sem_unlink("/fork");
 	sem_unlink("/eat");
 	sem_unlink("/dead");
-	sem_unlink("/permits");
 	table->s_forks = sem_open("/fork", O_CREAT | O_EXCL,
 			S_IRWXU, table->number_of_philosopher);
 	table->s_eat = sem_open("/eat", O_CREAT | O_EXCL, S_IRWXU, 1);
 	table->s_dead = sem_open("/dead", O_CREAT | O_EXCL, S_IRWXU, 1);
-	table->s_permits = sem_open("/permits", O_CREAT | O_EXCL, S_IRWXU, 1);
 	table->base_time = get_time();
 	table->dead = 0;
 	return (0);
@@ -77,11 +75,9 @@ void	clean_all(t_table *table, t_philo *philo, pid_t *philosopher)
 	sem_unlink("/fork");
 	sem_unlink("/eat");
 	sem_unlink("/dead");
-	sem_unlink("/permits");
 	sem_close(table->s_forks);
 	sem_close(table->s_eat);
 	sem_close(table->s_dead);
-	sem_close(table->s_permits);
 	free(philo);
 	free(philosopher);
 }

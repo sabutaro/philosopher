@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 09:20:49 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/10 22:18:48 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:48:26 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_table
 	unsigned long	base_time;
 	int				dead;
 	pthread_mutex_t	*m_forks;
-	pthread_mutex_t	m_output;
 	pthread_mutex_t	m_eat;
 	pthread_mutex_t	m_dead;
 }					t_table;
@@ -43,11 +42,13 @@ typedef struct s_philo
 	int				num;
 	int				cnt_eat;
 	unsigned long	last_eat;
+	int				is_eating;
 	pthread_t		tid;
 }					t_philo;
 
-int					put_msg(t_philo *philo, char *str,
-						unsigned long current_time);
+int					put_msg(int id, char *msg, t_philo *philo);
+void				print_status(unsigned long get_time, int id,
+						char *msg, t_philo *philo);
 void				*start_dinner(void *void_philo);
 void				*philo_dead(void *void_philo);
 int					ft_atoi(const char *str);

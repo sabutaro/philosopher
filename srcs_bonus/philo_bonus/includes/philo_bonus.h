@@ -6,7 +6,7 @@
 /*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:07:48 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/10 16:45:25 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:48:39 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_philo
 	int				num;
 	int				cnt_eat;
 	unsigned long	last_eat;
-	pid_t			pid;
 }					t_philo;
 
 void				*start_dinner(void *void_philo);

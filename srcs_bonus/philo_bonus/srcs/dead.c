@@ -6,7 +6,7 @@
 /*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:22:58 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/12 19:38:11 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 18:12:43 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*philo_dead(void *void_philo)
 	philo = void_philo;
 	while (1)
 	{
-		usleep(100);
+		usleep(1000);
 		sem_wait(philo->table->s_eat);
 		if (philo->cnt_eat == philo->table->must_eat)
 			break ;

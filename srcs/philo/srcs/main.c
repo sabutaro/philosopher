@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:30:16 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/12 18:22:01 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/14 15:43:47 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static int	init_table(t_table *table)
 		pthread_mutex_init(&table->m_forks[i], NULL);
 		i++;
 	}
-	pthread_mutex_init(&table->m_output, NULL);
 	pthread_mutex_init(&table->m_eat, NULL);
 	pthread_mutex_init(&table->m_dead, NULL);
 	table->base_time = get_time();
@@ -65,6 +64,7 @@ static void	init_dinner(t_philo *philos, t_table *table)
 		philos[i].fork2 = i;
 		philos[i].cnt_eat = 0;
 		philos[i].table = table;
+		philos[i].is_eating = 0;
 		philos[i].last_eat = get_time();
 		pthread_create(&philos[i].tid, NULL, start_dinner, &philos[i]);
 		i++;
@@ -81,7 +81,6 @@ void	clean_all(t_table *table, t_philo *philos)
 		pthread_mutex_destroy(&table->m_forks[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&table->m_output);
 	pthread_mutex_destroy(&table->m_eat);
 	pthread_mutex_destroy(&table->m_dead);
 	free(table->m_forks);

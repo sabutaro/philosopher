@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/17 14:30:23 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/10 22:11:31 by sperrin          ###   ########.fr       */
+/*   Created: 2021/05/19 12:22:58 by sperrin           #+#    #+#             */
+/*   Updated: 2021/06/14 22:13:46 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 void	*philo_dead(void *void_philo)
 {
-	t_philo			*philo;
+	t_philo	*philo;
 
 	philo = void_philo;
 	while (1)
 	{
+		usleep(1000);
 		pthread_mutex_lock(&philo->table->m_eat);
 		if (philo->cnt_eat == philo->table->must_eat)
 			break ;
 		if (get_time() - philo->last_eat > philo->table->time_to_die)
 		{
 			pthread_mutex_lock(&philo->table->m_dead);
-			if (philo->table->dead == 0)
+			if (!philo->table->dead)
 			{
 				philo->table->dead = 1;
 				pthread_mutex_unlock(&philo->table->m_forks[philo->fork1]);
-				put_msg(philo, "died", get_time());
+				print_status(get_time(), philo->num, "died", philo);
 			}
 			pthread_mutex_unlock(&philo->table->m_dead);
 			break ;
 		}
 		pthread_mutex_unlock(&philo->table->m_eat);
-		m_sleep(1);
 	}
 	pthread_mutex_unlock(&philo->table->m_eat);
 	return (NULL);
