@@ -12,7 +12,6 @@ HOW TO USE IT:
 Using make will create the philo executable. if you use make bonus will create the philo executable and the philo_bonus executable.
 
 You run it specifying, in order :
-
 The number of philosophers
 The time in milliseconds until a philosopher dies from starvation
 The time in milliseconds it takes for a philosopher to eat
@@ -27,6 +26,7 @@ Here, the program will create 4 philosophers, who will die if they go without ea
 
 
 OUTPUT:
-The program outputs every action with a timestamp (in milliseconds) and the philosopher's number. For example, if Philosopher 2 starts eating 412 milliseconds after the beginning of the program, it will output : `412ms 2 is eating`
+The program outputs every action with a timestamp (in milliseconds) and the philosopher's number. For example, if Philosopher 2 starts eating 412 milliseconds after the beginning of the program, it will output : 
+`412ms 2 is eating`
 
 
