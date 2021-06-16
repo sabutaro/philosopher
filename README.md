@@ -27,21 +27,6 @@ Here, the program will create 4 philosophers, who will die if they go without ea
 
 
 OUTPUT:
-The program outputs every action with a timestamp (in milliseconds) and the philosopher's number. For example, if Philosopher 2 starts eating 412 milliseconds after the beginning of the program, it will output :
-`./philo 3 410 200 200`
-`0ms 1 has taken a fork`
-`0ms 1 has taken a fork`
-`0ms 1 is eating`
-`0ms 3 has taken a fork`
-`205ms 1 is sleeping`
-`205ms 3 has taken a fork`
-`205ms 3 is eating`
-`205ms 2 has taken a fork`
-`408ms 1 is thinking`
-`408ms 2 has taken a fork`
-`408ms 2 is eating`
-`408ms 1 has taken a fork`
-`408ms 3 is sleeping`
-`412ms 1 died`
+The program outputs every action with a timestamp (in milliseconds) and the philosopher's number. For example, if Philosopher 2 starts eating 412 milliseconds after the beginning of the program, it will output : `412ms 2 is eating`
 
 
