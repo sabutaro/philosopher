@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat_sleep_think.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sperrin <sperrin@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/17 14:30:37 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/14 18:36:56 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/18 13:10:37 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,15 @@ int	eat(int id, t_philo *philo)
 	table = philo->table;
 	pthread_mutex_lock(&table->m_forks[philo->fork1]);
 	put_msg(id, "has taken a fork", philo);
-	pthread_mutex_lock(&table->m_forks[philo->fork2]);
+	pthread_mutex_lock(&table->m_forks[philo->fork2]);	
+	pthread_mutex_lock(&philo->table->m_eat);
 	put_msg(id, "has taken a fork", philo);
 	put_msg(id, "is eating", philo);
-	pthread_mutex_lock(&philo->table->m_eat);
 	philo->cnt_eat++;
 	philo->last_eat = get_time();
 	pthread_mutex_unlock(&philo->table->m_eat);
-	usleep(philo->table->time_to_eat * 1000);
+	// usleep(philo->table->time_to_eat * 1000);
+	msleep(philo->table->time_to_eat);
 	pthread_mutex_unlock(&table->m_forks[philo->fork1]);
 	pthread_mutex_unlock(&table->m_forks[philo->fork2]);
 	if (philo->table->must_eat != -1
@@ -71,7 +72,7 @@ void	*start_dinner(void *philo_ptr)
 	i = 0;
 	philo = philo_ptr;
 	if (philo->num % 2 == 0)
-		msleep(philo->table->time_to_eat);
+		usleep(philo->table->time_to_eat * 1000);
 	pthread_create(&tid, NULL, philo_dead, philo);
 	while (1)
 	{
@@ -79,7 +80,8 @@ void	*start_dinner(void *philo_ptr)
 			break ;
 		if (put_msg(philo->num, "is sleeping", philo) == 1)
 			break ;
-		usleep(philo->table->time_to_sleep * 1000);
+		// usleep(philo->table->time_to_eat * 1000);
+		msleep(philo->table->time_to_sleep);
 		if (put_msg(philo->num, "is thinking", philo) == 1)
 			break ;
 	}

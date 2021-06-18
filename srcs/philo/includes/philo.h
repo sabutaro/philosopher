@@ -6,7 +6,7 @@
 /*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 09:20:49 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/14 15:48:26 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/18 12:56:54 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void				*start_dinner(void *void_philo);
 void				*philo_dead(void *void_philo);
 int					ft_atoi(const char *str);
 unsigned long		get_time(void);
-void				m_sleep(unsigned long itime);
+void				msleep(unsigned long itime);
 int					error(char *argv);
 int					check_is_number(char **argv);
 int					ft_strcmp(char *s1, char *s2);

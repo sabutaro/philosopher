@@ -6,7 +6,7 @@
 /*   By: sperrin <sperrin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/19 12:21:51 by sperrin           #+#    #+#             */
-/*   Updated: 2021/06/14 15:49:49 by sperrin          ###   ########.fr       */
+/*   Updated: 2021/06/18 13:08:08 by sperrin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ int	eat_sleep(int id, t_philo *philo)
 {
 	sem_wait(philo->table->s_forks);
 	put_msg(id, "has taken a fork", philo);
-	sem_wait(philo->table->s_forks);
+	sem_wait(philo->table->s_forks);	
+	sem_wait(philo->table->s_eat);
 	put_msg(id, "has taken a fork", philo);
 	put_msg(id, "is eating", philo);
-	sem_wait(philo->table->s_eat);
 	philo->cnt_eat++;
 	philo->last_eat = get_time();
 	sem_post(philo->table->s_eat);
-	usleep(philo->table->time_to_eat * 1000);
+	// usleep(philo->table->time_to_eat * 1000);
+	msleep(philo->table->time_to_eat);
 	sem_post(philo->table->s_forks);
 	sem_post(philo->table->s_forks);
 	if (philo->table->must_eat != -1
@@ -68,7 +69,7 @@ void	*start_dinner(void *philo_ptr)
 	i = 0;
 	philo = philo_ptr;
 	if (philo->num % 2 == 0)
-		msleep(philo->table->time_to_eat);
+		usleep(philo->table->time_to_eat * 1000);
 	pthread_create(&tid, NULL, philo_dead, philo);
 	while (1)
 	{
@@ -76,9 +77,10 @@ void	*start_dinner(void *philo_ptr)
 			break ;
 		if (put_msg(philo->num, "is sleeping", philo) == 1)
 			exit (1);
-		usleep(philo->table->time_to_sleep * 1000);
+		// usleep(philo->table->time_to_sleep * 1000);
+		msleep(philo->table->time_to_sleep);
 		if (put_msg(philo->num, "is thinking", philo) == 1)
-			exit(1);
+			exit (1);
 	}
 	pthread_join(tid, NULL);
 	return (NULL);
